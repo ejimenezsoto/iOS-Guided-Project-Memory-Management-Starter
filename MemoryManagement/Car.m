@@ -22,12 +22,23 @@
 }
 
 // TODO: Implement autoreleased class car method
-
++ (instancetype)carWithMake:(NSString *)make
+{
+    Car *car = [[Car alloc] initWithMake:make];
+    return [car autorelease];
+    
+    
+}
 
 - (void)dealloc
 {
     NSLog(@"-[Car dealloc]: %@", self);
     // TODO: Implement dealloc with MRC
+    
+    // Release anything that the car is retaining
+    [_make release];
+    
+    [super dealloc];
 }
 
 - (NSString *)description
